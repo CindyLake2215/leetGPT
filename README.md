@@ -1,60 +1,56 @@
-Process Used (Plain English)
-To solve the Least Recently Used (LRU) Cache problem:
+### Process Used (Plain English)
 
-Understanding Requirements: The LRU cache requires the use of a data structure with efficient get and put operations, both running in 
-𝑂
-(
-1
-)
-O(1) time.
-Choosing Data Structures:
-Use a HashMap to store key-value pairs for 
-𝑂
-(
-1
-)
-O(1) access.
-Use a Doubly Linked List to maintain the order of usage, where the most recently used item is at the front, and the least recently used is at the back.
-Implementation Steps:
-Initialize the cache with a given capacity.
-For get(key), retrieve the value if the key exists, move the node to the front of the linked list, and return the value.
-For put(key, value), add the key-value pair. If the key already exists, update the value and move the node to the front. If the cache is full, evict the least recently used item before adding the new key-value pair.
-Edge Cases:
-Handle cache capacity of 0.
-Handle updates to existing keys.
-Handle retrieval of non-existent keys.
-Pseudocode
-Initialization:
+To solve the **Least Recently Used (LRU) Cache** problem:
+1. **Understanding Requirements**: The LRU cache requires the use of a data structure with efficient `get` and `put` operations, both running in \(O(1)\) time.
+2. **Choosing Data Structures**:
+   - Use a **HashMap** to store key-value pairs for \(O(1)\) access.
+   - Use a **Doubly Linked List** to maintain the order of usage, where the most recently used item is at the front, and the least recently used is at the back.
+3. **Implementation Steps**:
+   - Initialize the cache with a given capacity.
+   - For `get(key)`, retrieve the value if the key exists, move the node to the front of the linked list, and return the value.
+   - For `put(key, value)`, add the key-value pair. If the key already exists, update the value and move the node to the front. If the cache is full, evict the least recently used item before adding the new key-value pair.
+4. **Edge Cases**:
+   - Handle cache capacity of 0.
+   - Handle updates to existing keys.
+   - Handle retrieval of non-existent keys.
 
-Create a HashMap to store keys and their corresponding nodes.
-Create a dummy head and tail for the doubly linked list.
-Set the initial cache size to 0.
-Get Operation:
+---
 
-Check if the key exists in the HashMap.
-If it exists:
-Move the corresponding node to the front of the linked list.
-Return the value.
-If it doesn't exist, return -1.
-Put Operation:
+### Pseudocode
 
-Check if the key exists in the HashMap.
-If it exists:
-Update the value.
-Move the corresponding node to the front of the linked list.
-If it doesn't exist:
-If the cache is at capacity:
-Remove the least recently used node (node at the back).
-Remove its key from the HashMap.
-Add the new key-value pair to the HashMap and the linked list.
-Increment the cache size.
-Helper Functions:
+**Initialization**:
+1. Create a `HashMap` to store keys and their corresponding nodes.
+2. Create a dummy `head` and `tail` for the doubly linked list.
+3. Set the initial cache size to 0.
 
-Add a node to the front of the linked list.
-Remove a node from the linked list.
-Code Solution (Java)
-java
-Copy code
+**Get Operation**:
+1. Check if the key exists in the `HashMap`.
+2. If it exists:
+   - Move the corresponding node to the front of the linked list.
+   - Return the value.
+3. If it doesn't exist, return -1.
+
+**Put Operation**:
+1. Check if the key exists in the `HashMap`.
+2. If it exists:
+   - Update the value.
+   - Move the corresponding node to the front of the linked list.
+3. If it doesn't exist:
+   - If the cache is at capacity:
+     - Remove the least recently used node (node at the back).
+     - Remove its key from the `HashMap`.
+   - Add the new key-value pair to the `HashMap` and the linked list.
+   - Increment the cache size.
+
+**Helper Functions**:
+- Add a node to the front of the linked list.
+- Remove a node from the linked list.
+
+---
+
+### Code Solution (Java)
+
+```java
 import java.util.*;
 
 class LRUCache {
@@ -131,15 +127,6 @@ class LRUCache {
         return node;
     }
 }
-This implementation uses a HashMap for fast lookups and a Doubly Linked List for maintaining order, ensuring both get and put operations run in 
-𝑂
-(
-1
-)
-O(1) time.
+```
 
-
-
-
-
-
+This implementation uses a **HashMap** for fast lookups and a **Doubly Linked List** for maintaining order, ensuring both `get` and `put` operations run in \(O(1)\) time.
